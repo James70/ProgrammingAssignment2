@@ -1,0 +1,58 @@
+Sample Test Instructions for my code
+====================================
+
+Setup:
+1. open cachematrix.R into your editor
+2. "Source" the code into the R environment
+
+Here is a screen capture of my console commands to test these functions:
+
+> u<- read.table("sample matrix1.dat")
+> v<- read.table("sample matrix2.dat")
+> u
+  V1 V2 V3
+1  1  4  7
+2  2  5  8
+3  3  6  6
+> v
+  V1  V2 V3 V4
+1  1 4.0  7 12
+2  2 5.0  8  9
+3  3 6.0  6 55
+4 41 5.1  2 25
+>
+> obj<- makeCacheMatrix()
+> obj$set(u)
+> obj$read()
+  V1 V2 V3
+1  1  4  7
+2  2  5  8
+3  3  6  6
+> obj$setInv()
+> obj$readInv()
+         [,1]       [,2]       [,3]
+V1 -2.0000000  2.0000000 -0.3333333
+V2  1.3333333 -1.6666667  0.6666667
+V3 -0.3333333  0.6666667 -0.3333333
+> 
+> cacheSolve(u,obj)
+Inverse has already been computed. Retrieving cached data...
+         [,1]       [,2]       [,3]
+V1 -2.0000000  2.0000000 -0.3333333
+V2  1.3333333 -1.6666667  0.6666667
+V3 -0.3333333  0.6666667 -0.3333333
+>
+> cacheSolve(v,obj)
+          [,1]        [,2]        [,3]         [,4]
+V1  0.13857461 -0.10944640 -0.02513805  0.028188593
+V2 -1.97706298  1.59864077  0.18959725 -0.043634398
+V3  1.10214825 -0.74926311 -0.12646252  0.018921111
+V4  0.08788663 -0.08668958  0.01266556  0.001158435
+> cacheSolve(v,obj)
+Inverse has already been computed. Retrieving cached data...
+          [,1]        [,2]        [,3]         [,4]
+V1  0.13857461 -0.10944640 -0.02513805  0.028188593
+V2 -1.97706298  1.59864077  0.18959725 -0.043634398
+V3  1.10214825 -0.74926311 -0.12646252  0.018921111
+V4  0.08788663 -0.08668958  0.01266556  0.001158435
+> 
